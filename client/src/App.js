@@ -64,13 +64,13 @@ class App extends Component {
     this.setState({ error: null, loading: true }, () =>
       this.callApi(dni)
         .then(data => this.setState({ data, loading: false }))
-        .catch(error => this.setState({ error, loading: false }))
+        .catch(error => this.setState({ data: [], error, loading: false }))
     );
   };
 
   parseError = error => {
     const stringError = error.toString();
-    const errors = { "Error: DNI vacio": "El DNI es inválido" };
+    const errors = { "Error: DNI vacio": "DNI no encontrado" };
     return errors[stringError] || "Ha ocurrido un error";
   };
 
