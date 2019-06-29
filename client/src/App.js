@@ -3,14 +3,36 @@ import { InputGroup, InputGroupAddon, Input, Button } from "reactstrap";
 import "./App.css";
 import Table from "./tables/Table";
 
-const APIS = ["choferes", "curso", "cursadas", "examenes"];
-
 class App extends Component {
   state = { data: [] };
 
+  APIS = [
+    {
+      title: "Choferes",
+      name: "choferes"
+    },
+    {
+      title: "Curso",
+      subtitle:
+        "Mercancías Peligrosas (C) - Pasajeros (P) - Cargas Generales Bitrenes (BT)",
+      sortby: "VIGENCIA",
+      name: "curso"
+    },
+    {
+      title: "Cursadas",
+      subtitle: "Cargas Generales (G)",
+      name: "cursadas"
+    },
+    {
+      title: "Exámenes",
+      sortby: "LICVALIHAS",
+      name: "examenes"
+    }
+  ];
+
   callApi = dni =>
-    Promise.all(APIS.map(api => fetch(`/api/${api}/${dni}`))).then(resps =>
-      Promise.all(resps.map(res => res.json()))
+    Promise.all(this.APIS.map(({ name }) => fetch(`/api/${name}/${dni}`))).then(
+      resps => Promise.all(resps.map(res => res.json()))
     );
 
   handleSubmit = () => {
@@ -22,6 +44,7 @@ class App extends Component {
 
   render() {
     const { data } = this.state;
+    console.log("this.state:", this.state);
     return (
       <div className="App">
         <InputGroup>
@@ -33,8 +56,12 @@ class App extends Component {
             onChange={({ target: { value: dni } }) => this.setState({ dni })}
           />
         </InputGroup>
-        {APIS.map((api, i) => (
-          <Table name={api} data={data[i]} />
+        {this.APIS.map(({ name, sortby, title, subtitle }, i) => (
+          <div>
+            <h2>{title}</h2>
+            <h3>{subtitle}</h3>
+            <Table name={name} data={data[i]} sortby={sortby} />
+          </div>
         ))}
       </div>
     );
