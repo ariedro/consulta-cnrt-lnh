@@ -29,6 +29,7 @@ class App extends Component {
             <Button onClick={this.handleSubmit}>Enviar</Button>
           </InputGroupAddon>
           <Input
+            placeholder="DNI"
             onChange={({ target: { value: dni } }) => this.setState({ dni })}
           />
         </InputGroup>

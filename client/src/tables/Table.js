@@ -8,7 +8,17 @@ class Table extends Component {
 
   render() {
     const { name, data } = this.props;
-    return <ReactTable data={data} columns={schemas[name]} />;
+    const tableProps = {
+      defaultPageSize: 5,
+      showPageSizeOptions: false,
+      showFilters: true,
+      nextText: "Siguiente",
+      previousText: "Anterior",
+      pageText: "Página",
+      ofText: "de",
+      noDataText: "No se encontraron datos"
+    };
+    return <ReactTable data={data} columns={schemas[name]} {...tableProps} />;
   }
 }
 
