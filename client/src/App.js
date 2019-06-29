@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { InputGroup, InputGroupAddon, Input, Button } from "reactstrap";
 import "./App.css";
-import TableChoferes from "./tables/TableChoferes";
+import Table from "./tables/Table";
 
 const APIS = ["choferes", "curso", "cursadas", "examenes"];
 
 class App extends Component {
-  state = {};
+  state = { data: [] };
 
   callApi = dni =>
     Promise.all(APIS.map(api => fetch(`/api/${api}/${dni}`))).then(resps =>
@@ -21,6 +21,7 @@ class App extends Component {
   };
 
   render() {
+    const { data } = this.state;
     return (
       <div className="App">
         <InputGroup>
@@ -31,7 +32,9 @@ class App extends Component {
             onChange={({ target: { value: dni } }) => this.setState({ dni })}
           />
         </InputGroup>
-        <TableChoferes />
+        {APIS.map((api, i) => (
+          <Table name={api} data={data[i]} />
+        ))}
       </div>
     );
   }
