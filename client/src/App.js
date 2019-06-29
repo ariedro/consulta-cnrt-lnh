@@ -12,11 +12,9 @@ class App extends Component {
       name: "choferes"
     },
     {
-      title: "Curso",
-      subtitle:
-        "Mercancías Peligrosas (C) - Pasajeros (P) - Cargas Generales Bitrenes (BT)",
-      sortby: "VIGENCIA",
-      name: "curso"
+      title: "Exámenes",
+      sortby: "LICVALIHAS",
+      name: "examenes"
     },
     {
       title: "Cursadas",
@@ -24,9 +22,11 @@ class App extends Component {
       name: "cursadas"
     },
     {
-      title: "Exámenes",
-      sortby: "LICVALIHAS",
-      name: "examenes"
+      title: "Curso",
+      subtitle:
+        "Mercancías Peligrosas (C) - Pasajeros (P) - Cargas Generales Bitrenes (BT)",
+      sortby: "VIGENCIA",
+      name: "curso"
     }
   ];
 
@@ -44,25 +44,30 @@ class App extends Component {
 
   render() {
     const { data } = this.state;
-    console.log("this.state:", this.state);
     return (
       <div className="App">
-        <InputGroup>
-          <InputGroupAddon addonType="append">
-            <Button onClick={this.handleSubmit}>Enviar</Button>
-          </InputGroupAddon>
-          <Input
-            placeholder="DNI"
-            onChange={({ target: { value: dni } }) => this.setState({ dni })}
-          />
-        </InputGroup>
-        {this.APIS.map(({ name, sortby, title, subtitle }, i) => (
-          <div>
-            <h2>{title}</h2>
-            <h3>{subtitle}</h3>
-            <Table name={name} data={data[i]} sortby={sortby} />
-          </div>
-        ))}
+        <div className="input">
+          <InputGroup>
+            <InputGroupAddon addonType="prepend">
+              <Input
+                placeholder="DNI"
+                onChange={({ target: { value: dni } }) =>
+                  this.setState({ dni })
+                }
+              />
+              <Button color="primary" onClick={this.handleSubmit}>Enviar</Button>
+            </InputGroupAddon>
+          </InputGroup>
+        </div>
+        <div className="tables">
+          {this.APIS.map(({ name, sortby, title, subtitle }, i) => (
+            <div className="table-block">
+              <h2 className="title">{title}</h2>
+              <h3 className="subtitle">{subtitle}</h3>
+              <Table name={name} data={data[i]} sortby={sortby} />
+            </div>
+          ))}
+        </div>
       </div>
     );
   }

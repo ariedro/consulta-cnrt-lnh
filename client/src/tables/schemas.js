@@ -33,40 +33,6 @@ const choferes = [
   { Header: "TIPO", accessor: "TIPO", width: 50 }
 ];
 
-const curso = [
-  { Header: "DOC", accessor: "DOC" },
-  { Header: "VIGENCIA", accessor: "VIGENCIA" },
-  { Header: "APELLIDO", accessor: "APELLIDO" },
-  { Header: "CATEGORIA", accessor: "CATEGORIA", width: 80 },
-  { Header: "SUBCATE", accessor: "SUBCATE", width: 80 },
-  { Header: "RECEPCION", accessor: "RECEPCION" },
-  { Header: "ENVIO", accessor: "ENVIO", width: 80 },
-  { Header: "ENVIADO", accessor: "ENVIADO", width: 80 },
-  { Header: "FEENVIO", accessor: "FEENVIO" },
-  { Header: "NROENV", accessor: "NROENV", width: 80 }
-];
-
-const cursadas = [
-  { Header: "IDDoc", accessor: "IDDoc" },
-  { Header: "IDCurso", accessor: "IDCurso", width: 60 },
-  { Header: "Fecha_Inicio", accessor: "Fecha_Inicio" },
-  { Header: "Fecha_Inscripcion", accessor: "Fecha_Inscripcion" },
-  { Header: "Estado", accessor: "Estado", width: 60 },
-  { Header: "Fecha_Final", accessor: "Fecha_Final" },
-  { Header: "Vencimiento", accessor: "Vencimiento" },
-  { Header: "IDEscuela", accessor: "IDEscuela", width: 80 },
-  { Header: "Tipo_Curso", accessor: "Tipo_Curso", width: 60 },
-  { Header: "Derecho", accessor: "Derecho", width: 60 },
-  { Header: "Canon", accessor: "Canon", width: 60 },
-  { Header: "Cuit", accessor: "Cuit" },
-  { Header: "IDTipo_Vehiculo", accessor: "IDTipo_Vehiculo", width: 60 },
-  { Header: "Fecha", accessor: "Fecha" },
-  { Header: "IDUsuario", accessor: "IDUsuario", width: 60 },
-  { Header: "enviado", accessor: "enviado", width: 60 },
-  { Header: "feenvio", accessor: "feenvio" },
-  { Header: "nroenv", accessor: "nroenv", width: 60 }
-];
-
 const examenes = [
   { Header: "DOC", accessor: "DOC" },
   { Header: "FECHREVMED", accessor: "FECHREVMED" },
@@ -138,4 +104,38 @@ const examenes = [
   { Header: "FECHA_MODI", accessor: "FECHA_MODI" }
 ];
 
-export default { choferes, curso, cursadas, examenes };
+const cursadas = [
+  { Header: "IDDoc", accessor: "IDDoc" },
+  { Header: "IDCurso", accessor: "IDCurso", width: 60 },
+  { Header: "Fecha_Inicio", accessor: "Fecha_Inicio" },
+  { Header: "Fecha_Inscripcion", accessor: "Fecha_Inscripcion" },
+  { Header: "Estado", accessor: "Estado", width: 60 },
+  { Header: "Fecha_Final", accessor: "Fecha_Final" },
+  { Header: "Vencimiento", accessor: "Vencimiento" },
+  { Header: "IDEscuela", accessor: "IDEscuela", width: 80 },
+  { Header: "Tipo_Curso", accessor: "Tipo_Curso", width: 60 },
+  { Header: "Derecho", accessor: "Derecho", width: 60 },
+  { Header: "Canon", accessor: "Canon", width: 60 },
+  { Header: "Cuit", accessor: "Cuit" },
+  { Header: "IDTipo_Vehiculo", accessor: "IDTipo_Vehiculo", width: 60 },
+  { Header: "Fecha", accessor: "Fecha" },
+  { Header: "IDUsuario", accessor: "IDUsuario", width: 60 },
+  { Header: "enviado", accessor: "enviado", width: 60 },
+  { Header: "feenvio", accessor: "feenvio" },
+  { Header: "nroenv", accessor: "nroenv", width: 60 }
+];
+
+const curso = [
+  { Header: "DOC", accessor: "DOC" },
+  { Header: "VIGENCIA", accessor: "VIGENCIA" },
+  { Header: "APELLIDO", accessor: "APELLIDO" },
+  { Header: "CATEGORIA", accessor: "CATEGORIA", width: 80 },
+  { Header: "SUBCATE", accessor: "SUBCATE", width: 80 },
+  { Header: "RECEPCION", accessor: "RECEPCION" },
+  { Header: "ENVIO", accessor: "ENVIO", width: 80 },
+  { Header: "ENVIADO", accessor: "ENVIADO", width: 80 },
+  { Header: "FEENVIO", accessor: "FEENVIO" },
+  { Header: "NROENV", accessor: "NROENV", width: 80 }
+];
+
+export default { choferes, examenes, cursadas, curso };

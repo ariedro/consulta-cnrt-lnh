@@ -27,9 +27,9 @@ sql
   .then(pool => {
     [
       { table: "choferes", field: "DOC" },
-      { table: "curso", field: "DOC" },
+      { table: "examenes", field: "DOC" },
       { table: "cursadas", field: "IDDoc" },
-      { table: "examenes", field: "DOC" }
+      { table: "curso", field: "DOC" }
     ].map(({ table, field }) =>
       app.get(`/api/${table}/:${field}`, (req, res) =>
         sendQuery(pool, req, res, table, field)
