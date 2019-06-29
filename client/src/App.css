@@ -27,23 +27,25 @@
   padding: 32px 500px 0 500px;
 }
 
+.emptyinput {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .title {
   color: #606060;
   font-family: sans-serif;
-  font-size: 36px;
+  font-size: 24px;
   font-weight: bold;
   letter-spacing: 1.5px;
   line-height: 41px;
   padding: 0 0 10px 0;
 }
 
-.subtitle {
-  color: #909090;
-  font-family: sans-serif;
-  font-size: 24px;
-  font-weight: bold;
-  letter-spacing: 1.5px;
-  line-height: 41px;
+.badges {
+  margin-bottom: 20px;
 }
 
 .tables {
@@ -53,7 +55,17 @@
 }
 
 .table-block {
-  padding: 20px;
+  padding: 10px;
+}
+
+.signature {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: #888;
+  text-align: center;
+  font-size: 10px;
 }
 
 @keyframes App-logo-spin {

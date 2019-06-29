@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { InputGroup, InputGroupAddon, Input, Button, Alert } from "reactstrap";
+import {
+  InputGroup,
+  InputGroupAddon,
+  Input,
+  Button,
+  Alert,
+  Badge
+} from "reactstrap";
 import "./App.css";
 import Table from "./tables/Table";
 
@@ -9,24 +16,31 @@ class App extends Component {
   APIS = [
     {
       title: "Choferes",
-      name: "choferes"
+      name: "choferes",
+      rows: 2
     },
     {
       title: "Exámenes",
       sortby: "LICVALIHAS",
-      name: "examenes"
+      name: "examenes",
+      rows: 7
     },
     {
       title: "Cursadas",
-      subtitle: "Cargas Generales (G)",
-      name: "cursadas"
+      badges: ["Cargas Generales (G)"],
+      name: "cursadas",
+      rows: 7
     },
     {
       title: "Curso",
-      subtitle:
-        "Mercancías Peligrosas (C) - Pasajeros (P) - Cargas Generales Bitrenes (BT)",
+      badges: [
+        "Mercancías Peligrosas (C)",
+        "Pasajeros (P)",
+        "Cargas Generales Bitrenes (BT)"
+      ],
       sortby: "VIGENCIA",
-      name: "curso"
+      name: "curso",
+      rows: 5
     }
   ];
 
@@ -64,7 +78,8 @@ class App extends Component {
     const { error, data, loading } = this.state;
     return (
       <div className="App">
-        <div className="input">
+        <div className={data.length > 0 ? "input" : "emptyinput"}>
+          {data.length === 0 && <p>Ingrese DNI</p>}
           <InputGroup>
             <InputGroupAddon addonType="prepend">
               <Input
@@ -89,15 +104,21 @@ class App extends Component {
         </div>
         {data.length > 0 && (
           <div className="tables">
-            {this.APIS.map(({ name, sortby, title, subtitle }, i) => (
+            {this.APIS.map(({ name, sortby, title, badges, rows }, i) => (
               <div className="table-block">
                 <h2 className="title">{title}</h2>
-                <h3 className="subtitle">{subtitle}</h3>
-                <Table name={name} data={data[i]} sortby={sortby} />
+                <div className="badges">
+                  {badges &&
+                    badges.map(badge => <Badge color="info">{badge}</Badge>)}
+                </div>
+                <Table name={name} data={data[i]} sortby={sortby} rows={rows} />
               </div>
             ))}
           </div>
         )}
+        <p className="signature">
+          Creado por Ariel Aguirre (ariedro@gmail.com)
+        </p>
       </div>
     );
   }

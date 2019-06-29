@@ -4,9 +4,9 @@ import schemas from "./schemas";
 import "./Table.css";
 
 const Table = props => {
-  const { name, data, sortby } = props;
+  const { name, data, sortby, rows } = props;
   const tableProps = {
-    defaultPageSize: 5,
+    defaultPageSize: rows,
     showPageSizeOptions: false,
     showFilters: true,
     nextText: "Siguiente",
