@@ -1,63 +1,37 @@
 import React, { Component } from "react";
-
-import logo from "./logo.svg";
-
+import { InputGroup, InputGroupAddon, Input, Button } from "reactstrap";
 import "./App.css";
+import TableChoferes from "./tables/TableChoferes";
+
+const APIS = ["choferes", "curso", "cursadas", "examenes"];
 
 class App extends Component {
-  state = {
-    response: "",
-    post: "",
-    responseToPost: ""
-  };
+  state = {};
 
-  componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({ response: res.express }))
-      .catch(err => console.log(err));
-  }
+  callApi = dni =>
+    Promise.all(APIS.map(api => fetch(`/api/${api}/${dni}`))).then(resps =>
+      Promise.all(resps.map(res => res.json()))
+    );
 
-  callApi = async () => {
-    const response = await fetch("/api/hello");
-    const body = await response.json();
-    if (response.status !== 200) throw Error(body.message);
-
-    return body;
-  };
-
-  handleSubmit = async e => {
-    e.preventDefault();
-    const response = await fetch("/api/world", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ post: this.state.post })
-    });
-    const body = await response.text();
-
-    this.setState({ responseToPost: body });
+  handleSubmit = () => {
+    const { dni } = this.state;
+    this.callApi(dni)
+      .then(data => this.setState({ data }))
+      .catch(error => this.setState({ error }));
   };
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <form onSubmit={this.handleSubmit}>
-            <p>
-              <strong>Post to Server:</strong>
-            </p>
-            <input
-              type="text"
-              value={this.state.post}
-              onChange={e => this.setState({ post: e.target.value })}
-            />
-            <button type="submit">Submit</button>
-          </form>
-          <p>{this.state.response}</p>
-          <p>{this.state.responseToPost}</p>
-        </header>
+        <InputGroup>
+          <InputGroupAddon addonType="append">
+            <Button onClick={this.handleSubmit}>Enviar</Button>
+          </InputGroupAddon>
+          <Input
+            onChange={({ target: { value: dni } }) => this.setState({ dni })}
+          />
+        </InputGroup>
+        <TableChoferes />
       </div>
     );
   }
