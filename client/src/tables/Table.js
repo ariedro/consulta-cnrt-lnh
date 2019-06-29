@@ -1,10 +1,9 @@
 import React from "react";
 import ReactTable from "react-table";
-import "react-table/react-table.css";
 import schemas from "./schemas";
+import "./Table.css";
 
 const Table = props => {
-  console.log("props:", props);
   const { name, data, sortby } = props;
   const tableProps = {
     defaultPageSize: 5,
