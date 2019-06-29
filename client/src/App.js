@@ -37,13 +37,15 @@ class App extends Component {
 
   handleSubmit = () => {
     const { dni } = this.state;
-    this.callApi(dni)
-      .then(data => this.setState({ data }))
-      .catch(error => this.setState({ error }));
+    this.setState({ loading: true }, () =>
+      this.callApi(dni)
+        .then(data => this.setState({ data, loading: false }))
+        .catch(error => this.setState({ error }))
+    );
   };
 
   render() {
-    const { data } = this.state;
+    const { data, loading } = this.state;
     return (
       <div className="App">
         <div className="input">
@@ -55,19 +57,27 @@ class App extends Component {
                   this.setState({ dni })
                 }
               />
-              <Button color="primary" onClick={this.handleSubmit}>Enviar</Button>
+              <Button
+                color="primary"
+                onClick={this.handleSubmit}
+                disabled={loading}
+              >
+                Enviar
+              </Button>
             </InputGroupAddon>
           </InputGroup>
         </div>
-        <div className="tables">
-          {this.APIS.map(({ name, sortby, title, subtitle }, i) => (
-            <div className="table-block">
-              <h2 className="title">{title}</h2>
-              <h3 className="subtitle">{subtitle}</h3>
-              <Table name={name} data={data[i]} sortby={sortby} />
-            </div>
-          ))}
-        </div>
+        {data.length > 0 && (
+          <div className="tables">
+            {this.APIS.map(({ name, sortby, title, subtitle }, i) => (
+              <div className="table-block">
+                <h2 className="title">{title}</h2>
+                <h3 className="subtitle">{subtitle}</h3>
+                <Table name={name} data={data[i]} sortby={sortby} />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     );
   }
