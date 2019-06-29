@@ -1,10 +1,13 @@
 {
   "name": "consulta-cnrt-lnh",
-  "version": "0.1",
+  "author": {
+    "name": "Ariel Leandro Aguirre",
+    "email": "ariedro@gmail.com"
+  },
+  "version": "0.3.0",
   "scripts": {
-    "client": "cd client && yarn start",
-    "server": "nodemon main.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "client": "cd client && npm run start",
+    "server": "nodemon main.js"
   },
   "dependencies": {
     "body-parser": "1.19.0",
