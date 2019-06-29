@@ -44,8 +44,4 @@ sql.on("error", err => {
   console.log("[SQL Error]", err);
 });
 
-// app.get('/api/curso')
-// app.get('/api/cursada')
-// app.get('/api/examen')
-
 app.listen(port, () => console.log(`Listening on port ${port}`));
