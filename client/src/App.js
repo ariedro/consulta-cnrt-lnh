@@ -56,13 +56,16 @@ class App extends Component {
                 onChange={({ target: { value: dni } }) =>
                   this.setState({ dni })
                 }
+                onKeyPress={({ charCode }) =>
+                  charCode === 13 && this.handleSubmit()
+                }
               />
               <Button
                 color="primary"
                 onClick={this.handleSubmit}
                 disabled={loading}
               >
-                Enviar
+                {loading ? "Cargando" : "Enviar"}
               </Button>
             </InputGroupAddon>
           </InputGroup>
