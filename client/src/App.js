@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { InputGroup, InputGroupAddon, Input, Button } from "reactstrap";
+import { InputGroup, InputGroupAddon, Input, Button, Alert } from "reactstrap";
 import "./App.css";
 import Table from "./tables/Table";
 
@@ -30,22 +30,38 @@ class App extends Component {
     }
   ];
 
-  callApi = dni =>
-    Promise.all(this.APIS.map(({ name }) => fetch(`/api/${name}/${dni}`))).then(
-      resps => Promise.all(resps.map(res => res.json()))
-    );
+  callApi = async dni => {
+    try {
+      const responses = await Promise.all(
+        this.APIS.map(({ name }) => fetch(`/api/${name}/${dni}`))
+      );
+      const data = await Promise.all(responses.map(res => res.json()));
+      if (data.findIndex(d => d.length > 0) === -1)
+        throw new Error("DNI vacio");
+      return data;
+    } catch (e) {
+      console.log("[CallApi Error]", e);
+      throw e;
+    }
+  };
 
   handleSubmit = () => {
     const { dni } = this.state;
-    this.setState({ loading: true }, () =>
+    this.setState({ error: null, loading: true }, () =>
       this.callApi(dni)
         .then(data => this.setState({ data, loading: false }))
-        .catch(error => this.setState({ error }))
+        .catch(error => this.setState({ error, loading: false }))
     );
   };
 
+  parseError = error => {
+    const stringError = error.toString();
+    const errors = { "Error: DNI vacio": "El DNI es inválido" };
+    return errors[stringError] || "Ha ocurrido un error";
+  };
+
   render() {
-    const { data, loading } = this.state;
+    const { error, data, loading } = this.state;
     return (
       <div className="App">
         <div className="input">
@@ -69,6 +85,7 @@ class App extends Component {
               </Button>
             </InputGroupAddon>
           </InputGroup>
+          {error && <Alert color="danger">{this.parseError(error)}</Alert>}
         </div>
         {data.length > 0 && (
           <div className="tables">
