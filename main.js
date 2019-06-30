@@ -2,7 +2,7 @@ const express = require("express");
 const config = require("./config.json");
 
 const app = express();
-const port = process.env.PORT || 5000;
+const { port } = config;
 const sql = require("mssql");
 
 sendQuery = (pool, req, res, table, field) => {
