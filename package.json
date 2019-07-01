@@ -6,8 +6,7 @@
   },
   "version": "0.3.0",
   "scripts": {
-    "client": "cd client && npm run start",
-    "server": "nodemon main.js"
+    "deploy": "export PORT=[INGRESE PUERTO DE FRONTEND] && pm2 delete all; pm2 start main.js --name \"consultas-backend\" && cd client && pm2 start node_modules/react-scripts/scripts/start.js --name \"consultas-frontend\""
   },
   "dependencies": {
     "body-parser": "1.19.0",

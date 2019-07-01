@@ -2,7 +2,7 @@
   "name": "consulta",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000/",
+  "proxy": "http://localhost:[INGRESE PUERTO DE BACKEND]/",
   "dependencies": {
     "bootstrap": "4.3.1",
     "react": "^16.8.6",
