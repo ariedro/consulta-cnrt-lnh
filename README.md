@@ -13,7 +13,7 @@
 
 Luego de instalar los requerimientos solicitados, se deberá correr el siguiente comando sobre el directorio principal
 
-`npm run install`
+`./install.sh`
 
 ## Configuración
 
