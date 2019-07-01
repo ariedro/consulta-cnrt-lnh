@@ -39,11 +39,11 @@ Para correr la aplicación ejecutar el siguiente comando
 
 `npm run deploy`
 
-Correrá sobre dos instancias de pm2, para más información consultar [aquí](http://pm2.keymetrics.io).
+Se instanciará sobre 2 procesos de [pm2](http://pm2.keymetrics.io).
 
 ## Instrucciones futuras
 
-Ees recomendable usar [nginx](https://www.nginx.com/) como forma de alojamiento en un servidor web.
+Es recomendable usar [nginx](https://www.nginx.com/) como forma de alojamiento en un servidor web.
 
 ### Autor
 
